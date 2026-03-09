@@ -1,6 +1,10 @@
 def get_human_age(cat_age: int, dog_age: int) -> list:
     result_list = []
     for animal, age in (("cat", cat_age), ("dog", dog_age)):
+        if not isinstance(age, int):
+            raise TypeError("Expected an integer")
+        if age < 0:
+            raise ValueError("Value cannot be less than 0")
         if age < 15:
             result_list.append(0)
         elif 15 <= age < 24:

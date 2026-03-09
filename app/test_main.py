@@ -17,11 +17,19 @@ def tests(value1: int, value2: int, expected_results: list) -> None:
     assert get_human_age(value1, value2) == expected_results
 
 
-def test_negative() -> None:
+@pytest.mark.parametrize("value1,value2", [
+    (-3, 0),
+    (0, -3)
+])
+def test_negative(value1: int, value2: int) -> None:
     with pytest.raises(ValueError):
-        get_human_age(-3, 0)
+        get_human_age(value1, value2)
 
 
-def test_not_integer() -> None:
+@pytest.mark.parametrize("value1,value2", [
+    (3.43, 0),
+    (0, 3.43)
+])
+def test_not_integer(value1: int, value2: int) -> None:
     with pytest.raises(TypeError):
-        get_human_age(3.43, 0)
+        get_human_age(value1, value2)
